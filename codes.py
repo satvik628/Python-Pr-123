@@ -1,3 +1,9 @@
+#Python_Alphabet_Detector_app_using_camera
+
+
+
+
+
 #Importing all the important models and install them if not installed on your device
 import cv2
 import numpy as np
@@ -18,13 +24,14 @@ if (not os.environ.get('PYTHONHTTPSVERIFY', '') and
     ssl._create_default_https_context = ssl._create_unverified_context
 
 #Fetching the data
-X, y = fetch_openml('mnist_784', version=1, return_X_y=True)
+X = np.load('image.npz')['arr_0']
+y = pd.read_csv("labels.csv")["labels"]
 print(pd.Series(y).value_counts())
-classes = ['0', '1', '2','3', '4','5', '6', '7', '8', '9']
+classes = ['A', 'B', 'C', 'D', 'E','F', 'G', 'H', 'I', 'J', "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 nclasses = len(classes)
 
 #Splitting the data and scaling it
-X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=9, train_size=7500, test_size=2500)
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=9, train_size=3500, test_size=500)
 #scaling the features
 X_train_scaled = X_train/255.0
 X_test_scaled = X_test/255.0
